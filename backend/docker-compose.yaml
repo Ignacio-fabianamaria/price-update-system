@@ -1,0 +1,12 @@
+version: '3'
+services:
+  database:
+    image: mysql:8.0.29
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: ProductPackagedb
+    ports:
+      - "33060:3306"
+    volumes:
+      - ./src/db/dumps/database.sql:/docker-entrypoint-initdb.d/database.sql
