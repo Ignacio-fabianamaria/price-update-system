@@ -1,11 +1,10 @@
 const express = require('express');
+const { productsRouter } = require('./routers');
 
 const app = express();
 
-app.get('/', (rep, res) => {
-    res.status(200).json({message: 'olááá!!!!'})
-});
+app.use(express.json());
 
-module.exports = {
-    app,
-};
+app.use('/products', productsRouter);
+
+module.exports = app;
