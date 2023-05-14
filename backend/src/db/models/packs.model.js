@@ -12,7 +12,7 @@ const findByProductCode = async (productCode) => {
   const query = 'SELECT * FROM packs WHERE pack_id = ?';
   const values = [productCode];
   const [result] = await connection.execute(query, values);
-  return result;
+  return (result);
 };
 
 const updatePrice = async (productCode, newPrice) => {
@@ -30,7 +30,4 @@ const updatePackPrice = async (productCode, newPrice) => {
 
 module.exports = {
   findAll,
-  findByProductCode,
-  updatePrice,
-  updatePackPrice
 };
