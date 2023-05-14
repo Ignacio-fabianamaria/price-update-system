@@ -9,4 +9,4 @@ services:
     ports:
       - "33060:3306"
     volumes:
-      - ./src/db/dumps/database.sql:/docker-entrypoint-initdb.d/database.sql
+      - ./src/db/models/database.sql:/docker-entrypoint-initdb.d/database.sql
