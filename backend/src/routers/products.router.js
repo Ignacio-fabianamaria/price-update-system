@@ -4,6 +4,6 @@ const { productsController } = require('../controllers');
 const router = express.Router();
 
 router.get('/', productsController.getAllProducts,);
-
+router.patch('/', productsController.updateProductPrice);
 
 module.exports = router;
