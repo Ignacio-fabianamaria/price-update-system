@@ -9,6 +9,13 @@ const getAllProducts = async (_req, res) => {
   }
 };
 
+const handleCSVFile = (req, res) => {
+  if(!req.file){
+    return res.status(404).json({message: 'no file was provided'})
+}
+return res.status(200).json(req.file.buffer.toString());
+}
+
 const updateProductPrice = async (req, res) => {
   const { productCode, newPrice } = req.body;
 
@@ -26,5 +33,6 @@ const updateProductPrice = async (req, res) => {
 
 module.exports = {
   getAllProducts,
-  updateProductPrice
+  updateProductPrice,
+  handleCSVFile
 };

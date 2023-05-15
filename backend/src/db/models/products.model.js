@@ -2,7 +2,14 @@ const connection = require('./connection');
 const camelize = require('camelize');
 
 const findAll = async () => {
-  const [result] = await connection.execute('SELECT * FROM products');
+  const [result] = await connection.execute(
+    `SELECT p.code, p.name, p.cost_price, p.sales_price,
+    COALESCE(SUM(pa.qty), NULL) AS packQuantity,
+    p.sales_price * COALESCE(SUM(pa.qty), NULL) AS totalSalesPrice
+    FROM products p
+    LEFT JOIN packs pa ON p.code = pa.pack_id
+    GROUP BY p.code, p.name, p.cost_price, p.sales_price;`
+  );
   return camelize(result);
 };
 
