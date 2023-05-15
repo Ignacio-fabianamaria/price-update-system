@@ -24,14 +24,16 @@ export default function Products() {
   return (
     <div className="container">
       <tbody className='products-table'>
+        <thead>
         <tr>
-          <td>Código</td>
-          <td>Nome</td>
-          <td>Preço de custo</td>
-          <td>Preço de venda</td>
-          <td>Quantidade pack</td>
-          <td>Preço do pack</td>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Preço de custo</th>
+          <th>Preço de venda</th>
+          <th>Quantidade pack</th>
+          <th>Preço do pack</th>
         </tr>
+        </thead>
         {products.map(product => (
           <tr key={product.code}>
             <td> {product.code}</td>

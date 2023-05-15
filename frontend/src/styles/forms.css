@@ -1,7 +1,5 @@
 form {
     display: flex;
-    border: solid;
-    border-radius: 0.5em;
     padding: 1.2em;
     align-items: center;
     gap: 1em;
@@ -23,11 +21,13 @@ form {
   
   button:hover {
     background-color: #45a049;
+    margin-bottom: 1em;
   }
 
-  .btnUpdate {
+  .btnUpdate, .btnclear {
     margin-top: 1em;
     font-weight: 900;
     font-size: 1em;
+   margin-left: 0.5em;
   }
   

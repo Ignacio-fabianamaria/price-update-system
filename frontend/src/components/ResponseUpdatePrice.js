@@ -1,12 +1,13 @@
 import React from 'react';
+import '../styles/responseUpdatePrice.css'
 
 
 export default function ResponseUpdatePrice({data}) {
 const items =data[0];
   return (
     <>
-       <h3>Atualizações nos preços dos produtos</h3>
-      <table>
+      <table className='response-table'>
+        <caption>Status da atualização de preços:</caption>
         <thead>
           <tr>
             <th>Código</th>
@@ -20,7 +21,7 @@ const items =data[0];
             if (item.type === 'error') {
               return (
                 <tr key={index}>
-                  <td colSpan="5">{item.message}</td>
+                  <td colSpan="5" style={{color: 'red'}}>{item.message}</td>
                 </tr>
               );
             }
