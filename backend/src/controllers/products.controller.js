@@ -27,8 +27,8 @@ const fileLine = readline.createInterface({
 })
 for await (let line of fileLine) {
   const lineSplit = line.split(",");
-  const productCode = Number(lineSplit[0]);
-  const newPrice = Number(lineSplit[1]);
+  const productCode = (lineSplit[0]);
+  const newPrice = (lineSplit[1]);
   const result = await productsService.updatePrice(productCode, newPrice);
   console.log(result);
   results.push(result)
