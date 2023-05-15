@@ -8,25 +8,18 @@ export default function Home() {
   const handleBtnUpdate = () => {
     setShowProducts(true)
   }
-
-  const handleBtnClear = () => {
-    window.location.reload();
-  }
   return (
     <>
       <h1 className='title-home'>Sistema de atualização de preços</h1>
       <Forms />
-      <div>
+      
       <button
       className='btnUpdate'
       onClick={handleBtnUpdate}
       type='button'>Atualizar
       </button>
       {showProducts && <Products />}
-      <button className='btnclear' onClick={handleBtnClear}>
-        Limpar dados
-        </button>
-      </div>
+      
     </>
   );
 }

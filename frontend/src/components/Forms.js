@@ -9,6 +9,10 @@ export default function Forms() {
   const [showResponse, setShowResponse] = useState(false); 
   const [errorMessage, setErrorMessage] = useState('');
 
+  const handleBtnClear = () => {
+    window.location.reload();
+  }
+
     const handleValidation = async () => {
       const fileInput = document.getElementById('fileInput');
       const file = fileInput.files[0];
@@ -44,6 +48,9 @@ export default function Forms() {
         <form >
         <input type="file" accept=".csv" id="fileInput" onChange={handleFileChange} />
         <button type="button" onClick={handleValidation}>VALIDAR</button>
+        <button className='btnclear' onClick={handleBtnClear}>
+        Limpar dados
+        </button>
       </form>
       {errorMessage && (
         <p style={{ visibility: errorMessage ? 'visible' : 'hidden', color:'red' }}>
