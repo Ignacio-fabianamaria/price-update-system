@@ -1,3 +1,5 @@
+const { Readable } = require('stream');
+const readline = require('readline');
 const { productsService } = require('../services/index.js');
 
 const getAllProducts = async (_req, res) => {
@@ -9,11 +11,29 @@ const getAllProducts = async (_req, res) => {
   }
 };
 
-const handleCSVFile = (req, res) => {
+const handleCSVFile = async(req, res) => {
   if(!req.file){
     return res.status(404).json({message: 'no file was provided'})
 }
-return res.status(200).json(req.file.buffer.toString());
+const {file} = req;
+const { buffer } = file;
+const readableFile = new Readable();
+readableFile.push(buffer);
+readableFile.push(null);
+
+let results = [] 
+const fileLine = readline.createInterface({
+  input: readableFile
+})
+for await (let line of fileLine) {
+  const lineSplit = line.split(",");
+  const productCode = Number(lineSplit[0]);
+  const newPrice = Number(lineSplit[1]);
+  const result = await productsService.updatePrice(productCode, newPrice);
+  console.log(result);
+  results.push(result)
+}
+return res.status(200).json(results);
 }
 
 const updateProductPrice = async (req, res) => {

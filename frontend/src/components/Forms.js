@@ -1,26 +1,30 @@
 import React, { useState } from 'react';
+import ResponseUpdatePrice from './ResponseUpdatePrice';
 import { api } from '../services/request';
 import '../styles/forms.css';
 
 
 export default function Forms() {
-    const [errorMessage, setErrorMessage] = useState('');
+  const [data, setData] = useState([]);
+  const [showResponse, setShowResponse] = useState(false); 
+  const [errorMessage, setErrorMessage] = useState('');
 
     const handleValidation = async () => {
       const fileInput = document.getElementById('fileInput');
       const file = fileInput.files[0];
   
       if (!file) {
-        setErrorMessage('Nenhum arquivo foi selecionado.');
+        setErrorMessage('Nenhum arquivo foi anexado!');
         return;
       }
-  
       const formData = new FormData();
       formData.append('file', file);
-  
       try {
         const response = await api.post('/products', formData);
-        console.log(response.data + 'arquivo enviado');
+        const result = response.data;
+        setData([result]);
+        console.log([result])
+        setShowResponse(true);
       } catch (error) {
         console.error(error);
       }
@@ -40,11 +44,14 @@ export default function Forms() {
         <form >
         <input type="file" accept=".csv" id="fileInput" onChange={handleFileChange} />
         <button type="button" onClick={handleValidation}>VALIDAR</button>
-        {errorMessage && (
-        <p style={{ visibility: errorMessage ? 'visible' : 'hidden' }}>{errorMessage}</p>
-      )}
       </form>
-     
+      {errorMessage && (
+        <p style={{ visibility: errorMessage ? 'visible' : 'hidden', color:'red' }}>
+          {errorMessage}
+          </p>
+      )}
+      {showResponse && <ResponseUpdatePrice data={data} />} 
+
     </>
   );
 }

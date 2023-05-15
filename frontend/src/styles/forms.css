@@ -24,4 +24,10 @@ form {
   button:hover {
     background-color: #45a049;
   }
+
+  .btnUpdate {
+    margin-top: 1em;
+    font-weight: 900;
+    font-size: 1em;
+  }
   
