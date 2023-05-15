@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:3000', // Defina a origem permitida para o seu aplicativo React
+    origin: 'http://localhost:3002', // Defina a origem permitida para o seu aplicativo React
     methods: 'GET, POST, PUT, DELETE', // Defina os métodos HTTP permitidos
     allowedHeaders: 'Content-Type, Authorization', // Defina os cabeçalhos permitidos
   }));
